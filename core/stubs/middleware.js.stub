@@ -1,0 +1,8 @@
+import { defineMiddleware } from '@lazy-bot/core/types/plugin';
+
+export default defineMiddleware({
+  event: '{{event}}',
+  handler: async ({ sock, next }) => {
+    await next();
+  },
+});

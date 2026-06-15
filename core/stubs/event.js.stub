@@ -1,0 +1,7 @@
+import { defineEvent } from '@lazy-bot/core/types/plugin';
+
+export default defineEvent({
+  event: '{{event}}',
+  execute: async ({ sock, eventData }) => {
+  },
+});

@@ -1,0 +1,12 @@
+import { defineCommand } from '@lazy-bot/core/types/plugin';
+import { dump } from '@lazy-bot/core/utils/debug';
+
+export default defineCommand({
+  name: 'example',
+  description: 'try sending a test message to the bot',
+  aliases: ['test'],
+  async execute({ sock, msg }) {
+    // dump(msg);
+    await sock.sendMessage(msg.chat, { text: 'Hello from {{name}}!' });
+  },
+});

@@ -1,0 +1,358 @@
+{
+  "cache": {
+    "using_redis": "Using Redis Driver",
+    "using_lru": "Using LRU Driver"
+  },
+  "cli": {
+    "operation_cancelled": "Operation cancelled.",
+    "creating": "Creating...",
+    "done": "Done!",
+    "ready": "Command line interface ready. Type \"help\" for available commands.",
+    "unknown_command": "Unknown command '{command}'. Type 'help' to see available commands.",
+    "command_failed": "Command failed: {error}",
+    "console_closed": "Console input closed. Exiting...",
+    "command_load_failed": "Failed to load command file {file}: {error}",
+    "plugin_no_available": "No plugins available to select.",
+    "plugin_no_available_workspace": "No plugins available to select in the workspace.",
+    "file_exists": "File already exists: {path}",
+    "selection_cancelled": "Selection cancelled.",
+    "using_arrows": "Use UP/DOWN arrows to select a plugin, then press ENTER:",
+    "all": "All",
+    "none": "none",
+    "failed": "(failed)",
+    "did_you_mean": "Did you mean:",
+    "cmd": {
+      "clear": {
+        "description": "Clear the terminal screen"
+      },
+      "exit": {
+        "description": "Shutdown bot process",
+        "shutting_down": "Shutting down..."
+      },
+      "help": {
+        "intro": "CLI HELP",
+        "description": "Show available CLI commands",
+        "available_commands": "Available commands:\n\n{commands}\n"
+      },
+      "lang": {
+        "intro": "LANGUAGE SETTINGS",
+        "description": "Change global language",
+        "select": "Use UP/DOWN arrows to select a language, then press ENTER:"
+      },
+      "wa_logout": {
+        "intro": "SESSION LOGOUT",
+        "description": "Logout a WhatsApp session and remove its credentials",
+        "flags": {
+          "session": "Specify the session id to logout"
+        },
+        "confirm": "Are you sure you want to logout and delete session data?",
+        "cancelled": "Logout cancelled.",
+        "success": "Session '{sessionId}' logged out successfully.",
+        "failed": "Failed to logout session '{sessionId}': {error}",
+        "no_session_id": "No session id provided and WA_SESSION_NAME is not set."
+      },
+      "make_plugin": {
+        "intro": "CREATE PLUGIN",
+        "description": "Create a new plugin scaffold in the workspace directory",
+        "prompt_name": "Enter the name of the new plugin (e.g., my-plugin):",
+        "no_name": "Plugin name cannot be empty.",
+        "invalid_name": "Invalid plugin name. Scopes (e.g., @scope/) are not allowed.",
+        "already_exists": "Plugin '{name}' already exists in workspace.",
+        "success": "Plugin '{name}' created successfully in workspace.",
+        "login_required_msg": "You must be logged in to create a plugin because the system requires a unique namespace. What would you like to do?",
+        "login_now_label": "Login now",
+        "cancel_label": "Cancel",
+        "login_failed": "Login failed or was cancelled."
+      },
+      "make_command": {
+        "intro": "CREATE COMMAND",
+        "description": "Create a new command in a workspace plugin",
+        "prompt_plugin": "Select the plugin to add the command to:",
+        "prompt_name": "Enter the name of the command (e.g., ping):",
+        "no_name": "Command name cannot be empty.",
+        "success": "Command '{name}' created in plugin '{plugin}'."
+      },
+      "make_event": {
+        "intro": "CREATE EVENT",
+        "description": "Create a new event in a workspace plugin",
+        "prompt_plugin": "Select the plugin to add the event to:",
+        "prompt_name": "Enter the filename of the event (e.g., my-event):",
+        "no_name": "Event name cannot be empty.",
+        "prompt_type": "Enter the event type (e.g., messages.upsert):",
+        "success": "Event '{name}' created in plugin '{plugin}'."
+      },
+      "make_middleware": {
+        "intro": "CREATE MIDDLEWARE",
+        "description": "Create a new middleware in a workspace plugin",
+        "prompt_plugin": "Select the plugin to add the middleware to:",
+        "prompt_name": "Enter the filename of the middleware (e.g., my-middleware):",
+        "no_name": "Middleware name cannot be empty.",
+        "prompt_type": "Enter the event type to hook into (e.g., messages.upsert):",
+        "success": "Middleware '{name}' created in plugin '{plugin}'."
+      },
+      "make_migration": {
+        "intro": "CREATE MIGRATION",
+        "description": "Create a new database migration in a workspace plugin",
+        "prompt_plugin": "Select the plugin to add the migration to:",
+        "prompt_name": "Enter the name of the migration (e.g., users):",
+        "no_name": "Migration name cannot be empty.",
+        "success": "Migration '{name}' created in plugin '{plugin}'."
+      },
+      "plugin_commands": {
+        "intro": "PLUGIN COMMANDS",
+        "description": "Show all registered plugin commands",
+        "list": "Registered plugin commands:",
+        "none": "No plugin commands registered."
+      },
+      "plugin_events": {
+        "intro": "PLUGIN EVENTS",
+        "description": "Show all registered plugin events",
+        "list": "Registered plugin events (Sorted by priority):",
+        "none": "No plugin events registered."
+      },
+      "plugin_format": {
+        "intro": "PLUGIN FORMATTER",
+        "description": "Format plugins using Prettier",
+        "formatting": "Formatting all plugins...",
+        "formatting_specific": "Formatting plugin '{pluginName}'...",
+        "success": "Plugins formatted successfully.",
+        "failed": "Failed to format plugins: {error}",
+        "not_found": "Plugin not found: {pluginName}"
+      },
+      "plugin_list": {
+        "intro": "PLUGIN LIST",
+        "description": "Show loaded and failed plugins",
+        "summary": "Plugins loaded: {loaded}, failed: {failed}",
+        "loaded": "Loaded plugins:",
+        "failed_list": "Failed plugins:"
+      },
+      "plugin_install": {
+        "description": "Install a plugin from the registry",
+        "errors": {
+          "PLUGIN_NOT_FOUND": "The requested plugin was not found or is not published.",
+          "PLUGIN_VERSION_NOT_FOUND": "The specified plugin version was not found."
+        },
+        "running_migrations": "Running database migrations...",
+        "migrations_applied": "Database migrations applied.",
+        "migrations_issue": "Migrations encountered an issue: {{error}}",
+        "reloading": "Reloading plugin into system...",
+        "reloaded": "Plugin reloaded."
+      },
+      "plugin_uninstall": {
+        "description": "Uninstall a plugin",
+        "intro": "UNINSTALL PLUGIN",
+        "no_key": "Please specify the plugin key to uninstall. e.g., @namespace/name",
+        "invalid_key": "Invalid plugin key format. Must be @namespace/name or namespace/name",
+        "not_installed": "Plugin \"{pluginKey}\" is not installed.",
+        "select": "Select plugins to uninstall (Space to select, Enter to confirm):",
+        "no_installed_plugins": "No plugins installed in the plugins directory.",
+        "confirm": "Are you sure you want to uninstall plugin \"{pluginKey}\"?",
+        "confirm_multiple": "Are you sure you want to uninstall {count} plugins: {pluginKeys}?",
+        "cancelled": "Uninstall cancelled.",
+        "uninstalling": "Uninstalling plugins...",
+        "success": "Successfully uninstalled plugins: {pluginKeys}.",
+        "failed": "Failed to uninstall plugins: {error}"
+      },
+      "plugin_publish": {
+        "description": "Publish a plugin to the marketplace",
+        "intro": "PUBLISH PLUGIN",
+        "not_logged_in": "You must be logged in to publish a plugin. Run 'login' first.",
+        "no_plugins": "No plugins with package.json found in the workspace directory.",
+        "select": "Select a plugin from your workspace to publish:",
+        "cancelled": "Publish cancelled.",
+        "no_manifest": "package.json not found in path: {path}",
+        "read_failed": "Failed to read package.json: {error}",
+        "missing_version": "package.json is missing the 'version' field.",
+        "metadata_title": "PLUGIN METADATA",
+        "metadata_name": "Package Name: {name}",
+        "metadata_version": "Version: {version}",
+        "metadata_author": "Author: {author}",
+        "metadata_description": "Description: {description}",
+        "confirm": "Are you sure you want to publish \"{pluginName}\" version {version}?",
+        "packaging": "Packaging and uploading plugin...",
+        "success": "Successfully published version {version}!",
+        "published": "Plugin {pluginName} is now published.",
+        "view_web": "View on Web: {url}",
+        "failed": "Publish failed: {error}",
+        "errors": {
+          "VALIDATION_ERROR": "Validation error. Please check your plugin structure.",
+          "INVALID_MANIFEST_JSON": "The package.json file has an invalid JSON format.",
+          "UNAUTHORIZED_PLUGIN_OWNER": "You do not own this plugin and cannot publish versions for it.",
+          "PLUGIN_VERSION_ALREADY_EXISTS": "This plugin version has already been published.",
+          "VERSION_MUST_BE_GREATER": "The version must be greater than the current latest version."
+        }
+      },
+      "plugin_upgrade": {
+        "description": "Check and upgrade installed plugins to their latest versions",
+        "checking": "Checking for updates...",
+        "up_to_date": "All plugins are up to date.",
+        "instruction": "Press Space to select, Enter to confirm.",
+        "select": "Select plugins to upgrade:",
+        "confirm_warning": "Warning: Upgrading will overwrite plugin files. Configs will be merged, but manual changes to core files might be lost. Do you want to proceed?",
+        "cancelled": "Upgrade cancelled.",
+        "success": "Plugin '{pluginKey}' successfully upgraded to version {version}!",
+        "failed": "Failed to upgrade '{pluginKey}': {error}"
+      },
+      "plugin_middlewares": {
+        "intro": "PLUGIN MIDDLEWARES",
+        "description": "Show loaded middlewares sorted by priority",
+        "list": "Loaded middlewares (Sorted by execution order):",
+        "none": "No middlewares loaded."
+      },
+      "plugin_migrate": {
+        "intro": "PLUGIN MIGRATION",
+        "description": "Run, rollback, or refresh database migrations for plugins",
+        "flags": {
+          "plugin": "Specify the plugin to migrate",
+          "all": "Run migrations for all plugins",
+          "rollback": "Rollback the last migration batch for the plugin",
+          "fresh": "Rollback all migrations and run them again"
+        },
+        "prompt_plugin": "Select a plugin to migrate:",
+        "running": "Running migrations for {{pluginKey}}...",
+        "rolling_back": "Rolling back migrations for {{pluginKey}}...",
+        "freshing": "Refreshing migrations for {{pluginKey}}...",
+        "success": "Migrations for {{pluginKey}} completed successfully.",
+        "success_rollback": "Rollback for {{pluginKey}} completed successfully.",
+        "success_fresh": "Fresh migration for {{pluginKey}} completed successfully.",
+        "failed": "Migration operation failed: {{error}}"
+      },
+      "plugin_reload": {
+        "intro": "PLUGIN RELOADER",
+        "description": "Reload all plugins or a specific plugin",
+        "flags": {
+          "plugin": "Reload a specific plugin by key",
+          "all": "Reload all plugins"
+        },
+        "reloading_all": "Reloading all plugins...",
+        "reload_summary": "Reloaded all plugins.",
+        "specify_plugin": "Please specify a plugin key to reload, or use --all to reload everything.",
+        "no_key": "No plugin key provided.",
+        "reloading": "Reloading plugin {pluginKey}...",
+        "reload_success": "Plugin '{pluginKey}' reloaded successfully.",
+        "not_found": "Plugin not found: {pluginKey}. {suggestion}",
+        "available": "Available plugins:"
+      },
+      "services_login": {
+        "description": "Login to lazy-bot web services",
+        "intro": "Login to Web Services",
+        "already_logged_in": "You are already logged in. Please logout first if you want to switch accounts.",
+        "choose_method": "Choose login method:",
+        "method_credentials": "Email / Username & Password",
+        "method_token": "Personal Access Token",
+        "cancelled": "Login cancelled.",
+        "prompt_email": "Email / Username:",
+        "email_required": "Email or Username is required",
+        "prompt_password": "Password:",
+        "password_required": "Password is required",
+        "authenticating": "Authenticating...",
+        "success_credentials": "Successfully authenticated with credentials!",
+        "prompt_token": "Enter your Personal Access Token:",
+        "token_required": "Token is required",
+        "validating_token": "Validating token...",
+        "success_token": "Token validated successfully! Hello, {name}",
+        "saved_globally": "Token saved globally at {path}",
+        "failed_save": "Failed to save token: {error}",
+        "failed_login": "Login failed: {error}",
+        "failed_validate": "Token validation failed: {error}"
+      },
+      "services_logout": {
+        "description": "Logout from lazy-bot web services",
+        "intro": "Logout from Web Services",
+        "logging_out": "Logging out...",
+        "already_logged_out": "You are already logged out (no token found).",
+        "success": "Successfully logged out!",
+        "revoked": "Your token has been revoked from the server and removed locally.",
+        "failed": "Failed to logout: {error}"
+      },
+      "plugin_watcher": {
+        "intro": "PLUGIN WATCHER",
+        "description": "Manage plugin hot-reload watcher",
+        "flags": {
+          "start": "Start watching plugins",
+          "stop": "Stop watching plugins",
+          "status": "Check watcher status"
+        },
+        "status": "Plugin Watcher status: {status}",
+        "already_running": "Watcher is already running.",
+        "not_running": "Watcher is not running.",
+        "started": "Started watching plugins.",
+        "stopped": "Stopped watching plugins.",
+        "usage": "Usage: watcher [flags]\n\nFlags:\n  --start          Start the plugin hot-reload watcher\n  --stop           Stop the plugin hot-reload watcher\n  --status         Check the current status of the watcher\n  --help, -h       Show this help message\n\nExamples:\n  plugin:watcher --start\n  plugin:watcher --status",
+        "stop_warning": "Watcher stopped. It is recommended to restart the bot to optimally clear accumulated memory from development."
+      },
+      "wa_status": {
+        "intro": "BOT STATUS",
+        "description": "Show bot status and active sessions",
+        "no_active": "No active WhatsApp sessions.",
+        "active_list": "Active sessions:\n{sessions}"
+      },
+      "restart": {
+        "description": "Restart the bot process",
+        "confirm": "Are you sure you want to restart the bot process?",
+        "restarting": "Restarting..."
+      }
+    }
+  },
+  "database": {
+    "connected": "Connected to database.",
+    "failed": "Failed to connect to database: {error}"
+  },
+  "env": {
+    "invalid_variables": "Invalid environment variables."
+  },
+  "i18n": {
+    "load_failed": "Failed to load core language: {file}",
+    "folder_not_found": "Folder {dir} not found.",
+    "lang_changed": "Global language changed to {lang}",
+    "lang_change_failed": "Failed to change global language to {lang}: {error}",
+    "initialized": "Initialized."
+  },
+  "plugin": {
+    "loaded_count": "Loaded {loaded} plugins. Failed to load {failed} plugins.",
+    "error_reading_manifest": "Error reading package.json: {error}",
+    "failed_to_load": "Failed to load.",
+    "error_in_component": "Error in {type}/{file}: {error}",
+    "error_set_config": "Error set config {config}: {error}",
+    "dependency_missing": "Disabled: Missing required plugin '{dep}'.",
+    "dependency_version_mismatch": "Disabled: Requires plugin '{dep}' version {required}, but currently installed is version {installed}.",
+    "workspace_login_required": "Skipping workspace plugins because you are not logged in. Please login first."
+  },
+  "system": {
+    "failed_to_start": "Failed to start lazy: {error}",
+    "unhandled_rejection": "Unhandled Rejection: {reason}",
+    "uncaught_exception": "Uncaught Exception: {error}",
+    "plugin_website": "Discover and download plugins at: {url}"
+  },
+  "wa": {
+    "message_stub": "Message stub: {params}",
+    "version_cached": "Version cached: {version}",
+    "connection_timeout": "Connection timeout ({seconds} seconds). Destroying...",
+    "session_destroyed": "Session destroyed.",
+    "destroy_error": "Error destroying session: {error}",
+    "timeout_set": "Connection timeout set for {seconds} seconds.",
+    "socket_emit_error": "Error emitting to socket: {error}",
+    "fetch_group_error": "Error fetching group: {error}",
+    "init_in_progress": "Session initialization already in progress",
+    "session_exists": "Session already exists",
+    "phone_empty": "Phone number cannot be empty. Session aborted.",
+    "phone_invalid_length": "Invalid number length. Must be 8-15 digits.",
+    "phone_invalid_format": "Do not use leading '0'. Use country code instead (e.g., 62...).",
+    "phone_number": "Phone number: {phoneNumber}",
+    "max_reconnect": "Max reconnect attempts reached",
+    "session_stopped": "Session stopped.",
+    "stop_error": "Error stopping session: {error}",
+    "pairing_code_generated": "Pairing code generated.",
+    "pairing_code_error": "Error requesting pairing code: {error}",
+    "qr_gen_error": "Error generating QR code: {error}",
+    "qr_received": "QR Code Received",
+    "conn_closed_reconnecting": "Connection closed, attempting reconnect...",
+    "logged_out": "Logged out, removing session",
+    "connecting": "Connecting...",
+    "connected": "Connected",
+    "conn_update_error": "Connection Update Error: {error}",
+    "init_error": "Error initializing session: {error}",
+    "logout_error": "Error logging out: {error}",
+    "shutdown_summary": "Shutdown: {succeeded}/{total} sessions stopped"
+  }
+}

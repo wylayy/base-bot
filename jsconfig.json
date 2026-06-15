@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "allowJs": true,
+    "checkJs": true,
+    "strict": false,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "typeRoots": [
+      "./plugins/**/types"
+    ]
+  },
+  "include": [
+    "./plugins/**/*.js",
+    "./plugins/**/*.ts",
+    "./plugins/**/*.d.ts",
+    "./core/**/*.d.ts",
+    "./workspace/**/*.js",
+    "./workspace/**/*.ts",
+    "./workspace/**/*.d.ts"
+  ]
+}

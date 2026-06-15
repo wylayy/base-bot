@@ -1,0 +1,20 @@
+import 'dotenv/config';
+declare const _default: {
+    WA_AUTH_STATE: "file" | "database";
+    WA_USE_PAIRING_CODE: boolean;
+    KEY: string;
+    TZ: string;
+    CACHE_DRIVER: "redis" | "lru";
+    DEFAULT_LANG: string;
+    PLUGIN_WATCHER: boolean;
+    API_BASE_URL: string;
+    DB_CONNECTION: "sqlite" | "mysql";
+    DB_PORT: number;
+    WA_SESSION_NAME: string;
+    REDIS_URL?: string | undefined;
+    DB_HOST?: string | undefined;
+    DB_USER?: string | undefined;
+    DB_PASSWORD?: string | undefined;
+    DB_DATABASE?: string | undefined;
+};
+export default _default;

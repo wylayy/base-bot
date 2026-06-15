@@ -1,0 +1,358 @@
+{
+  "cache": {
+    "using_redis": "Menggunakan Driver Redis",
+    "using_lru": "Menggunakan Driver LRU"
+  },
+  "cli": {
+    "operation_cancelled": "Operasi dibatalkan.",
+    "creating": "Sedang membuat...",
+    "done": "Selesai!",
+    "ready": "Antarmuka baris perintah siap. Ketik \"help\" untuk perintah yang tersedia.",
+    "unknown_command": "Perintah tidak dikenal '{command}'. Ketik 'help' untuk melihat perintah yang tersedia.",
+    "command_failed": "Perintah gagal: {error}",
+    "console_closed": "Input konsol ditutup. Keluar...",
+    "command_load_failed": "Gagal memuat file perintah {file}: {error}",
+    "plugin_no_available": "Tidak ada plugin yang tersedia untuk dipilih.",
+    "plugin_no_available_workspace": "Tidak ada plugin yang tersedia di workspace.",
+    "file_exists": "File sudah ada: {path}",
+    "selection_cancelled": "Pemilihan dibatalkan.",
+    "using_arrows": "Gunakan panah ATAS/BAWAH untuk memilih plugin, lalu tekan ENTER:",
+    "all": "Semua",
+    "none": "tidak ada",
+    "failed": "(gagal)",
+    "did_you_mean": "Mungkin maksud Anda:",
+    "cmd": {
+      "clear": {
+        "description": "Bersihkan layar terminal"
+      },
+      "exit": {
+        "description": "Matikan proses bot",
+        "shutting_down": "Mematikan..."
+      },
+      "help": {
+        "intro": "BANTUAN CLI",
+        "description": "Tampilkan perintah CLI yang tersedia",
+        "available_commands": "Perintah yang tersedia:\n\n{commands}\n"
+      },
+      "lang": {
+        "intro": "PENGATURAN BAHASA",
+        "description": "Ubah bahasa global",
+        "select": "Gunakan panah ATAS/BAWAH untuk memilih bahasa, lalu tekan ENTER:"
+      },
+      "wa_logout": {
+        "intro": "LOGOUT SESI",
+        "description": "Keluar dari sesi WhatsApp dan hapus kredensialnya",
+        "flags": {
+          "session": "Tentukan id sesi untuk keluar"
+        },
+        "confirm": "Apakah Anda yakin ingin logout dan menghapus data sesi?",
+        "cancelled": "Logout dibatalkan.",
+        "success": "Sesi '{sessionId}' berhasil logout.",
+        "failed": "Gagal melogout sesi '{sessionId}': {error}",
+        "no_session_id": "Tidak ada ID sesi yang diberikan dan WA_SESSION_NAME tidak disetel."
+      },
+      "make_plugin": {
+        "intro": "BUAT PLUGIN",
+        "description": "Buat template plugin baru di direktori workspace",
+        "prompt_name": "Masukkan nama plugin baru (misal: my-plugin):",
+        "no_name": "Nama plugin tidak boleh kosong.",
+        "invalid_name": "Nama plugin tidak valid. Scope (misal: @scope/) tidak diperbolehkan.",
+        "already_exists": "Plugin '{name}' sudah ada di workspace.",
+        "success": "Plugin '{name}' berhasil dibuat di workspace.",
+        "login_required_msg": "Anda harus login untuk membuat plugin karena sistem membutuhkan namespace yang unik. Apa yang ingin Anda lakukan?",
+        "login_now_label": "Login sekarang",
+        "cancel_label": "Batal",
+        "login_failed": "Login gagal atau dibatalkan."
+      },
+      "make_command": {
+        "intro": "BUAT PERINTAH",
+        "description": "Buat perintah baru di dalam plugin workspace",
+        "prompt_plugin": "Pilih plugin untuk menambahkan perintah:",
+        "prompt_name": "Masukkan nama perintah (misal: ping):",
+        "no_name": "Nama perintah tidak boleh kosong.",
+        "success": "Perintah '{name}' berhasil dibuat di plugin '{plugin}'."
+      },
+      "make_event": {
+        "intro": "BUAT EVENT",
+        "description": "Buat event baru di dalam plugin workspace",
+        "prompt_plugin": "Pilih plugin untuk menambahkan event:",
+        "prompt_name": "Masukkan nama file event (misal: my-event):",
+        "no_name": "Nama file event tidak boleh kosong.",
+        "prompt_type": "Masukkan tipe event (misal: messages.upsert):",
+        "success": "Event '{name}' berhasil dibuat di plugin '{plugin}'."
+      },
+      "make_middleware": {
+        "intro": "BUAT MIDDLEWARE",
+        "description": "Buat middleware baru di dalam plugin workspace",
+        "prompt_plugin": "Pilih plugin untuk menambahkan middleware:",
+        "prompt_name": "Masukkan nama file middleware (misal: my-middleware):",
+        "no_name": "Nama file middleware tidak boleh kosong.",
+        "prompt_type": "Masukkan tipe event untuk hook (misal: messages.upsert):",
+        "success": "Middleware '{name}' berhasil dibuat di plugin '{plugin}'."
+      },
+      "make_migration": {
+        "intro": "BUAT MIGRASI",
+        "description": "Buat migrasi database baru di dalam plugin workspace",
+        "prompt_plugin": "Pilih plugin untuk menambahkan migrasi:",
+        "prompt_name": "Masukkan nama migrasi (misal: users):",
+        "no_name": "Nama migrasi tidak boleh kosong.",
+        "success": "Migrasi '{name}' berhasil dibuat di plugin '{plugin}'."
+      },
+      "plugin_commands": {
+        "intro": "DAFTAR PERINTAH PLUGIN",
+        "description": "Tampilkan semua perintah plugin yang terdaftar",
+        "list": "Perintah plugin yang terdaftar:",
+        "none": "Tidak ada perintah plugin yang terdaftar."
+      },
+      "plugin_events": {
+        "intro": "DAFTAR EVENT PLUGIN",
+        "description": "Tampilkan semua event plugin yang terdaftar",
+        "list": "Event plugin yang terdaftar (Diurutkan berdasarkan prioritas):",
+        "none": "Tidak ada event plugin yang terdaftar."
+      },
+      "plugin_format": {
+        "intro": "FORMATTER PLUGIN",
+        "description": "Format plugin menggunakan Prettier",
+        "formatting": "Memformat semua plugin...",
+        "formatting_specific": "Memformat plugin '{pluginName}'...",
+        "success": "Plugin berhasil diformat.",
+        "failed": "Gagal memformat plugin: {error}",
+        "not_found": "Plugin tidak ditemukan: {pluginName}"
+      },
+      "plugin_list": {
+        "intro": "DAFTAR PLUGIN",
+        "description": "Tampilkan plugin yang dimuat dan yang gagal",
+        "summary": "Plugin dimuat: {loaded}, gagal: {failed}",
+        "loaded": "Plugin yang dimuat:",
+        "failed_list": "Plugin yang gagal:"
+      },
+      "plugin_install": {
+        "description": "Menginstal plugin dari registry",
+        "errors": {
+          "PLUGIN_NOT_FOUND": "Plugin yang diminta tidak ditemukan atau belum dipublikasikan.",
+          "PLUGIN_VERSION_NOT_FOUND": "Versi plugin yang diminta tidak ditemukan."
+        },
+        "running_migrations": "Menjalankan migrasi database...",
+        "migrations_applied": "Migrasi database berhasil diaplikasikan.",
+        "migrations_issue": "Migrasi database mengalami kendala: {{error}}",
+        "reloading": "Memuat ulang plugin ke dalam sistem...",
+        "reloaded": "Plugin berhasil dimuat ulang."
+      },
+      "plugin_uninstall": {
+        "description": "Menghapus instalasi plugin",
+        "intro": "UNINSTALL PLUGIN",
+        "no_key": "Harap tentukan kunci plugin yang akan dihapus. misal: @namespace/name",
+        "invalid_key": "Format kunci plugin tidak valid. Harus @namespace/name atau namespace/name",
+        "not_installed": "Plugin \"{pluginKey}\" tidak terinstal.",
+        "select": "Pilih plugin yang ingin dihapus (Spasi untuk memilih, Enter untuk konfirmasi):",
+        "no_installed_plugins": "Tidak ada plugin yang terinstal di direktori plugins.",
+        "confirm": "Apakah Anda yakin ingin menghapus plugin \"{pluginKey}\"?",
+        "confirm_multiple": "Apakah Anda yakin ingin menghapus {count} plugin: {pluginKeys}?",
+        "cancelled": "Uninstall dibatalkan.",
+        "uninstalling": "Menghapus plugin...",
+        "success": "Berhasil menghapus plugin: {pluginKeys}.",
+        "failed": "Gagal menghapus plugin: {error}"
+      },
+      "plugin_publish": {
+        "description": "Mempublikasikan plugin ke marketplace",
+        "intro": "PUBLIKASI PLUGIN",
+        "not_logged_in": "Anda harus login untuk mempublikasikan plugin. Jalankan 'login' terlebih dahulu.",
+        "no_plugins": "Tidak ada plugin dengan package.json yang ditemukan di direktori workspace.",
+        "select": "Pilih plugin dari workspace Anda untuk dipublikasikan:",
+        "cancelled": "Publikasi dibatalkan.",
+        "no_manifest": "package.json tidak ditemukan di path: {path}",
+        "read_failed": "Gagal membaca package.json: {error}",
+        "missing_version": "package.json tidak memiliki field 'version'.",
+        "metadata_title": "METADATA PLUGIN",
+        "metadata_name": "Nama Package: {name}",
+        "metadata_version": "Versi: {version}",
+        "metadata_author": "Penulis: {author}",
+        "metadata_description": "Deskripsi: {description}",
+        "confirm": "Apakah Anda yakin ingin mempublikasikan \"{pluginName}\" versi {version}?",
+        "packaging": "Mengemas dan mengunggah plugin...",
+        "success": "Berhasil mempublikasikan versi {version}!",
+        "published": "Plugin {pluginName} sekarang telah dipublikasikan.",
+        "view_web": "Lihat di Web: {url}",
+        "failed": "Gagal mempublikasikan: {error}",
+        "errors": {
+          "VALIDATION_ERROR": "Error validasi. Silakan periksa kembali struktur plugin Anda.",
+          "INVALID_MANIFEST_JSON": "File package.json memiliki format JSON yang tidak valid.",
+          "UNAUTHORIZED_PLUGIN_OWNER": "Anda bukan pemilik plugin ini dan tidak dapat menerbitkan versi baru.",
+          "PLUGIN_VERSION_ALREADY_EXISTS": "Versi plugin ini sudah pernah dipublikasikan.",
+          "VERSION_MUST_BE_GREATER": "Versi baru harus lebih tinggi dari versi terakhir yang dirilis."
+        }
+      },
+      "plugin_upgrade": {
+        "description": "Periksa dan perbarui plugin yang terinstal ke versi terbaru",
+        "checking": "Memeriksa pembaruan...",
+        "up_to_date": "Semua plugin sudah menggunakan versi terbaru.",
+        "instruction": "Tekan Spasi untuk memilih, Enter untuk melanjutkan.",
+        "select": "Pilih plugin yang ingin diperbarui:",
+        "confirm_warning": "Peringatan: Proses upgrade akan menimpa seluruh file plugin. Config lama Anda akan digabung (merge), namun perubahan manual yang Anda lakukan pada file core akan hilang. Apakah Anda yakin ingin melanjutkan?",
+        "cancelled": "Upgrade dibatalkan.",
+        "success": "Plugin '{pluginKey}' berhasil diperbarui ke versi {version}!",
+        "failed": "Gagal memperbarui '{pluginKey}': {error}"
+      },
+      "plugin_middlewares": {
+        "intro": "DAFTAR MIDDLEWARE PLUGIN",
+        "description": "Tampilkan middleware yang dimuat diurutkan berdasarkan prioritas",
+        "list": "Middleware yang dimuat (Diurutkan berdasarkan urutan eksekusi):",
+        "none": "Tidak ada middleware yang dimuat."
+      },
+      "plugin_migrate": {
+        "intro": "MIGRASI PLUGIN",
+        "description": "Jalankan, batalkan (rollback), atau perbarui (fresh) migrasi database plugin",
+        "flags": {
+          "plugin": "Tentukan plugin yang akan di-migrate",
+          "all": "Jalankan migrasi untuk semua plugin",
+          "rollback": "Batalkan migrasi terakhir (rollback) untuk plugin",
+          "fresh": "Batalkan semua migrasi lalu jalankan ulang dari awal"
+        },
+        "prompt_plugin": "Pilih plugin untuk di-migrate:",
+        "running": "Menjalankan migrasi untuk {{pluginKey}}...",
+        "rolling_back": "Membatalkan migrasi (rollback) untuk {{pluginKey}}...",
+        "freshing": "Memperbarui migrasi (fresh) untuk {{pluginKey}}...",
+        "success": "Migrasi untuk {{pluginKey}} berhasil.",
+        "success_rollback": "Rollback untuk {{pluginKey}} berhasil.",
+        "success_fresh": "Migrasi ulang (fresh) untuk {{pluginKey}} berhasil.",
+        "failed": "Operasi migrasi gagal: {{error}}"
+      },
+      "plugin_reload": {
+        "intro": "RELOADER PLUGIN",
+        "description": "Muat ulang semua plugin atau plugin tertentu",
+        "flags": {
+          "plugin": "Muat ulang plugin tertentu berdasarkan kunci",
+          "all": "Muat ulang semua plugin"
+        },
+        "reloading_all": "Memuat ulang semua plugin...",
+        "reload_summary": "Memuat ulang semua plugin.",
+        "specify_plugin": "Harap tentukan kunci plugin untuk dimuat ulang, atau gunakan --all untuk memuat ulang semuanya.",
+        "no_key": "Kunci plugin tidak diberikan.",
+        "reloading": "Memuat ulang plugin {pluginKey}...",
+        "reload_success": "Plugin '{pluginKey}' berhasil dimuat ulang.",
+        "not_found": "Plugin tidak ditemukan: {pluginKey}. {suggestion}",
+        "available": "Plugin yang tersedia:"
+      },
+      "services_login": {
+        "description": "Login ke web services lazy-bot",
+        "intro": "Login ke Web Services",
+        "already_logged_in": "Anda sudah login. Silakan logout terlebih dahulu jika ingin berganti akun.",
+        "choose_method": "Pilih metode login:",
+        "method_credentials": "Email / Username & Password",
+        "method_token": "Personal Access Token",
+        "cancelled": "Login dibatalkan.",
+        "prompt_email": "Email / Username:",
+        "email_required": "Email atau Username wajib diisi",
+        "prompt_password": "Password:",
+        "password_required": "Password wajib diisi",
+        "authenticating": "Mengautentikasi...",
+        "success_credentials": "Berhasil login dengan kredensial!",
+        "prompt_token": "Masukkan Personal Access Token Anda:",
+        "token_required": "Token wajib diisi",
+        "validating_token": "Memvalidasi token...",
+        "success_token": "Token berhasil divalidasi! Halo, {name}",
+        "saved_globally": "Token disimpan secara global di {path}",
+        "failed_save": "Gagal menyimpan token: {error}",
+        "failed_login": "Login gagal: {error}",
+        "failed_validate": "Validasi token gagal: {error}"
+      },
+      "services_logout": {
+        "description": "Logout dari web services lazy-bot",
+        "intro": "Logout dari Web Services",
+        "logging_out": "Proses logout...",
+        "already_logged_out": "Anda sudah logout (tidak ada token ditemukan).",
+        "success": "Berhasil logout!",
+        "revoked": "Token Anda telah dicabut dari server dan dihapus secara lokal.",
+        "failed": "Gagal logout: {error}"
+      },
+      "plugin_watcher": {
+        "intro": "WATCHER PLUGIN",
+        "description": "Kelola pemantau muat ulang panas plugin",
+        "flags": {
+          "start": "Mulai memantau plugin",
+          "stop": "Berhenti memantau plugin",
+          "status": "Cek status pemantau"
+        },
+        "status": "Status Pemantau Plugin: {status}",
+        "already_running": "Pemantau sudah berjalan.",
+        "not_running": "Pemantau tidak berjalan.",
+        "started": "Mulai memantau plugin.",
+        "stopped": "Berhenti memantau plugin.",
+        "usage": "Penggunaan: watcher [flags]\n\nFlags:\n  --start          Mulai pemantau muat ulang plugin secara langsung\n  --stop           Hentikan pemantau muat ulang plugin\n  --status         Cek status pemantau saat ini\n  --help, -h       Tampilkan pesan bantuan ini\n\nContoh:\n  plugin:watcher --start\n  plugin:watcher --status",
+        "stop_warning": "Watcher dihentikan. Disarankan untuk me-restart bot agar dapat membersihkan akumulasi memori dari proses pengembangan secara optimal."
+      },
+      "wa_status": {
+        "intro": "STATUS BOT",
+        "description": "Tampilkan status bot dan sesi aktif",
+        "no_active": "Tidak ada sesi WhatsApp yang aktif.",
+        "active_list": "Sesi aktif:\n{sessions}"
+      },
+      "restart": {
+        "description": "Mulai ulang proses bot",
+        "confirm": "Apakah Anda yakin ingin memulai ulang proses bot?",
+        "restarting": "Memulai ulang..."
+      }
+    }
+  },
+  "database": {
+    "connected": "Terhubung ke database.",
+    "failed": "Gagal terhubung ke database: {error}"
+  },
+  "env": {
+    "invalid_variables": "Variabel lingkungan tidak valid."
+  },
+  "i18n": {
+    "load_failed": "Gagal memuat bahasa core: {file}",
+    "folder_not_found": "Folder {dir} not found.",
+    "lang_changed": "Bahasa global diubah menjadi {lang}",
+    "lang_change_failed": "Gagal mengubah bahasa global menjadi {lang}: {error}",
+    "initialized": "Terinisialisasi."
+  },
+  "plugin": {
+    "loaded_count": "Memuat {loaded} plugin. Gagal memuat {failed} plugin.",
+    "error_reading_manifest": "Kesalahan membaca package.json: {error}",
+    "failed_to_load": "Gagal memuat.",
+    "error_in_component": "Kesalahan di {type}/{file}: {error}",
+    "error_set_config": "Kesalahan mengatur konfigurasi {config}: {error}",
+    "dependency_missing": "Dinonaktifkan: Butuh plugin '{dep}' yang belum dipasang.",
+    "dependency_version_mismatch": "Dinonaktifkan: Butuh plugin '{dep}' versi {required}, tapi yang saat ini terpasang adalah versi {installed}.",
+    "workspace_login_required": "Melewati pemuatan plugin workspace karena Anda belum login. Silakan login terlebih dahulu."
+  },
+  "system": {
+    "failed_to_start": "Gagal memulai lazy: {error}",
+    "unhandled_rejection": "Unhandled Rejection: {reason}",
+    "uncaught_exception": "Uncaught Exception: {error}",
+    "plugin_website": "Temukan dan unduh plugin di: {url}"
+  },
+  "wa": {
+    "message_stub": "Stub pesan: {params}",
+    "version_cached": "Versi di-cache: {version}",
+    "connection_timeout": "Koneksi habis waktu ({seconds} detik). Menghancurkan...",
+    "session_destroyed": "Sesi dihancurkan.",
+    "destroy_error": "Gagal menghancurkan sesi: {error}",
+    "timeout_set": "Batas waktu koneksi disetel ke {seconds} detik.",
+    "socket_emit_error": "Gagal mengirim ke socket: {error}",
+    "fetch_group_error": "Gagal mengambil grup: {error}",
+    "init_in_progress": "Inisialisasi sesi sedang berlangsung",
+    "session_exists": "Sesi sudah ada",
+    "phone_empty": "Nomor telepon tidak boleh kosong. Sesi dibatalkan.",
+    "phone_invalid_length": "Panjang nomor tidak valid. Harus 8-15 digit.",
+    "phone_invalid_format": "Jangan gunakan awalan '0'. Gunakan kode negara (misal, 62...).",
+    "phone_number": "Nomor telepon: {phoneNumber}",
+    "max_reconnect": "Batas percobaan penyambungan ulang tercapai",
+    "session_stopped": "Sesi dihentikan.",
+    "stop_error": "Gagal menghentikan sesi: {error}",
+    "pairing_code_generated": "Kode penyambungan dibuat.",
+    "pairing_code_error": "Gagal meminta kode penyambungan: {error}",
+    "qr_gen_error": "Gagal membuat kode QR: {error}",
+    "qr_received": "Kode QR Diterima",
+    "conn_closed_reconnecting": "Koneksi ditutup, mencoba menyambung kembali...",
+    "logged_out": "Keluar, menghapus sesi",
+    "connecting": "Menghubungkan...",
+    "connected": "Terhubung",
+    "conn_update_error": "Kesalahan Pembaruan Koneksi: {error}",
+    "init_error": "Gagal menginisialisasi sesi: {error}",
+    "logout_error": "Gagal logout: {error}",
+    "shutdown_summary": "Shutdown: {succeeded}/{total} sesi dihentikan"
+  }
+}

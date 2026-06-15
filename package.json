@@ -1,0 +1,36 @@
+{
+  "name": "lazy-bot",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "ilsyaa",
+  "type": "module",
+  "scripts": {
+    "start": "node core/lazy.js",
+    "format:plugins": "prettier --write \"plugins/**/*.{js,ts,json}\""
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.2.0",
+    "adm-zip": "^0.5.17",
+    "baileys": "^7.0.0-rc.12",
+    "consola": "^3.4.2",
+    "dotenv": "^17.4.2",
+    "ioredis": "^5.10.1",
+    "knex": "^3.2.9",
+    "lru-cache": "^11.3.5",
+    "luxon": "^3.7.2",
+    "mysql2": "^3.22.1",
+    "picocolors": "^1.1.1",
+    "pino": "^10.3.1",
+    "prettier": "^3.8.3",
+    "qrcode": "^1.5.4",
+    "semver": "^7.8.4",
+    "sqlite3": "^6.0.1",
+    "zod": "^4.3.6"
+  },
+  "workspaces": [
+    "core",
+    "plugins/*/*",
+    "workspace/*"
+  ]
+}

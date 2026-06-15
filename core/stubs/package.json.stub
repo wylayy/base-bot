@@ -1,0 +1,9 @@
+{
+  "name": "@workspace/{{pluginName}}",
+  "version": "1.0.0",
+  "description": "Description for {{name}}",
+  "author": "{{namespace}}",
+  "repository": "#",
+  "pluginDependencies": {},
+  "dependencies": {}
+}
