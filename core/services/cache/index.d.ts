@@ -9,5 +9,6 @@ export declare class CacheService {
     set(key: string, value: any, ttl?: number): Promise<import("lru-cache/raw").LRUCache<string, any, unknown> | "OK">;
     del(key: string): Promise<number | boolean>;
     has(key: string): Promise<boolean>;
+    remember<T>(key: string, ttl: number, callback: () => Promise<T> | T): Promise<T>;
 }
 export { cacheInstance as cache };
