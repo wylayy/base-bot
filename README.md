@@ -7,7 +7,7 @@
 
 ---
 
-**Lazy Bot** is an enterprise-scale, highly modular WhatsApp bot framework powered by [Baileys](https://github.com/WhiskeySockets/Baileys). It brings modern backend development practices—like isolated plugins, automated database migrations, hot-reloading, and a robust CLI—straight to your WhatsApp bot development workflow.
+**Lazy Bot** is an enterprise-scale, highly modular WhatsApp bot framework based on [Baileys](https://github.com/WhiskeySockets/Baileys). It brings modern backend development practices—like isolated plugins, automated database migrations, hot-reloading, and a robust CLI—straight to your WhatsApp bot development workflow.
 
 *(For detailed development tutorials, please refer to our upcoming official documentation).*
 
