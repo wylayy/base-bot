@@ -1,4 +1,4 @@
-import { defineEvent } from '@lazy-bot/core/types/plugin';
+import { defineEvent } from '@lazy/core/types/plugin';
 
 export default defineEvent({
   event: '{{event}}',

@@ -327,6 +327,8 @@
   "plugin": {
     "loaded_count": "Loaded {loaded} plugins. Failed to load {failed} plugins.",
     "error_reading_manifest": "Error reading package.json: {error}",
+    "missing_manifest_name": "Plugin is missing 'name' in package.json. It must follow the '@namespace/plugin-name' format.",
+    "invalid_manifest_name": "Invalid plugin name '{name}' in package.json. Name must follow the format '@namespace/plugin-name'.",
     "failed_to_load": "Failed to load.",
     "error_in_component": "Error in {type}/{file}: {error}",
     "error_set_config": "Error set config {config}: {error}",
@@ -338,7 +340,14 @@
     "failed_to_start": "Failed to start lazy: {error}",
     "unhandled_rejection": "Unhandled Rejection: {reason}",
     "uncaught_exception": "Uncaught Exception: {error}",
-    "plugin_website": "Discover and download plugins at: {url}"
+    "plugin_website": "Discover and download plugins at: {url}",
+    "version_info": "Version: {version}",
+    "new_version_available": "A new version is available: {latest}. Download here: {url}",
+    "version_check_failed": "Failed to check for updates: {error}",
+    "errors": {
+      "GITHUB_REPO_NOT_CONFIGURED": "GitHub repository is not configured in site settings.",
+      "GITHUB_FETCH_FAILED": "Failed to fetch the latest version from GitHub."
+    }
   },
   "wa": {
     "message_stub": "Message stub: {params}",

@@ -59,16 +59,24 @@ class PluginManager {
         this.loadedPlugins.clear();
         this.failedPlugins.clear();
         try {
-            const namespaces = await fs.readdir(this.pluginDir);
-            await Promise.all(namespaces
-                .filter((ns) => ns.startsWith('@'))
-                .map(async (namespace) => {
-                const namespacePath = path.join(this.pluginDir, namespace);
-                const pluginFolders = await fs
-                    .readdir(namespacePath)
-                    .catch(() => []);
-                await Promise.all(pluginFolders.map((folder) => this.loadPlugin(`${namespace}/${folder}`, isReload).catch(() => { })));
-            }));
+            const pluginDirItems = await fs.readdir(this.pluginDir).catch(() => []);
+            const loadPromises = [];
+            for (const item of pluginDirItems) {
+                const itemPath = path.join(this.pluginDir, item);
+                const stats = await fs.stat(itemPath).catch(() => null);
+                if (!stats || !stats.isDirectory())
+                    continue;
+                if (item.startsWith('@')) {
+                    const pluginFolders = await fs.readdir(itemPath).catch(() => []);
+                    for (const folder of pluginFolders) {
+                        loadPromises.push(this.loadPlugin(`${item}/${folder}`, isReload).catch(() => { }));
+                    }
+                }
+                else {
+                    loadPromises.push(this.loadPlugin(item, isReload).catch(() => { }));
+                }
+            }
+            await Promise.all(loadPromises);
             if (global.AUTH_TOKEN && global.AUTH_USER?.username) {
                 const currentUsername = global.AUTH_USER.username;
                 const workspaceFolders = await fs
@@ -114,7 +122,7 @@ class PluginManager {
     async reloadPlugin(pluginKey) {
         const pluginPath = this.pluginPaths.get(pluginKey);
         let newPluginKey = pluginKey;
-        if (pluginPath && pluginPath.startsWith(this.workspaceDir)) {
+        if (pluginPath) {
             try {
                 const manifestStr = await fs.readFile(path.join(pluginPath, 'package.json'), 'utf-8');
                 const manifest = JSON.parse(manifestStr);
@@ -201,13 +209,23 @@ class PluginManager {
             }
         }
     }
-    async loadPlugin(pluginKey, isReload = false, customPath) {
-        const pluginPath = customPath || path.join(this.pluginDir, pluginKey);
+    async loadPlugin(providedKey, isReload = false, customPath) {
+        const pluginPath = customPath || path.join(this.pluginDir, providedKey);
         let pluginManifest;
+        let pluginKey = providedKey;
+        let mainTmpFile = '';
         try {
             const manifestPath = path.join(pluginPath, 'package.json');
             const rawManifest = await fs.readFile(manifestPath, 'utf-8');
             pluginManifest = JSON.parse(rawManifest);
+            if (!pluginManifest.name) {
+                throw new Error(t('plugin.missing_manifest_name'));
+            }
+            const nameRegex = /^@[a-z0-9_-]+\/[a-z0-9_-]+$/;
+            if (!nameRegex.test(pluginManifest.name)) {
+                throw new Error(t('plugin.invalid_manifest_name', { name: pluginManifest.name }));
+            }
+            pluginKey = pluginManifest.name;
         }
         catch (err) {
             this.failedPlugins.add(pluginKey);
@@ -273,6 +291,7 @@ class PluginManager {
                     const isTsx = import.meta.url.endsWith('.ts');
                     if (isTsx) {
                         const tmpFile = `.${mainFile.replace('.js', `_${Date.now()}.tmp.js`)}`;
+                        mainTmpFile = tmpFile;
                         const tmpPath = path.join(pluginPath, tmpFile);
                         await fs.copyFile(mainPath, tmpPath);
                         const fileUrl = pathToFileURL(tmpPath).href;
@@ -304,6 +323,9 @@ class PluginManager {
             this.pluginPaths.set(pluginKey, pluginPath);
         }
         catch (err) {
+            if (mainTmpFile && err && err.message && typeof err.message === 'string') {
+                err.message = err.message.split(mainTmpFile).join(pluginManifest?.main || 'index.js');
+            }
             this.cleanupPluginData(pluginKey);
             this.failedPlugins.add(pluginKey);
             logger.error(this.getLogPrefix(pluginKey), t('plugin.failed_to_load'));
@@ -367,10 +389,12 @@ class PluginManager {
         await Promise.all(files
             .filter((f) => f.endsWith('.js'))
             .map(async (file) => {
+            let currentTmpFile = '';
             try {
                 let module;
                 if (isReload) {
                     const tmpFile = `.${file.replace('.js', `_${Date.now()}.tmp.js`)}`;
+                    currentTmpFile = tmpFile;
                     const tmpPath = path.join(dir, tmpFile);
                     let content = await fs.readFile(path.join(dir, file), 'utf-8');
                     const updateQuery = `?update=${Date.now()}`;
@@ -407,10 +431,14 @@ class PluginManager {
                 await handler(file.replace('.js', ''), module.default);
             }
             catch (err) {
+                let errorMessage = err?.message || err || '';
+                if (currentTmpFile && typeof errorMessage === 'string') {
+                    errorMessage = errorMessage.split(currentTmpFile).join(file);
+                }
                 logger.error(this.getLogPrefix(pluginKey), t('plugin.error_in_component', {
                     type: componentType,
                     file,
-                    error: err?.message || err,
+                    error: errorMessage,
                 }));
                 throw new Error(`Component failure in ${componentType}/${file}`);
             }

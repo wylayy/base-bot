@@ -12,10 +12,10 @@ import pluginLoader from '@lazy/core/services/plugin/index';
 import pluginWatcher from '@lazy/core/services/plugin/watcher';
 import authService from '@lazy/core/services/auth/index';
 import cliService from '@lazy/core/services/cli/index';
+import versionService from '@lazy/core/services/version/index';
 import { initI18n, t } from '@lazy/core/services/i18n/index';
 import logger from '@lazy/core/utils/logger';
 import pc from 'picocolors';
-import path from 'node:path';
 import { Storage } from '@lazy/core/utils/storage';
 import { messageBatcher } from '@lazy/core/services/store/batcher';
 global.API_BASE_URL = env.API_BASE_URL;
@@ -34,6 +34,7 @@ const bootstrap = async () => {
         await initDatabase();
         await authService.init();
         await pluginLoader.load();
+        await versionService.check();
         if (env.PLUGIN_WATCHER && global.AUTH_USER) {
             pluginWatcher.init();
         }
@@ -42,7 +43,7 @@ const bootstrap = async () => {
             usePairingCode: env.WA_USE_PAIRING_CODE,
         });
         logger.info('[SYSTEM]', t('system.plugin_website', {
-            url: pc.cyanBright(path.join(global.API_BASE_URL, 'plugins')),
+            url: pc.underline(pc.cyanBright(`${global.API_BASE_URL}/plugins`)),
         }));
         await cliService.init();
     }

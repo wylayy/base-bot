@@ -1,5 +1,5 @@
-import { defineCommand } from '@lazy-bot/core/types/plugin';
-import { dump } from '@lazy-bot/core/utils/debug';
+import { defineCommand } from '@lazy/core/types/plugin';
+import { dump } from '@lazy/core/utils/debug';
 
 export default defineCommand({
   name: 'example',

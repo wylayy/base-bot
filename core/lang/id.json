@@ -327,6 +327,8 @@
   "plugin": {
     "loaded_count": "Memuat {loaded} plugin. Gagal memuat {failed} plugin.",
     "error_reading_manifest": "Kesalahan membaca package.json: {error}",
+    "missing_manifest_name": "Plugin tidak memiliki 'name' di package.json. Harus mengikuti format '@namespace/nama-plugin'.",
+    "invalid_manifest_name": "Nama plugin '{name}' tidak valid di package.json. Harus mengikuti format '@namespace/nama-plugin'.",
     "failed_to_load": "Gagal memuat.",
     "error_in_component": "Kesalahan di {type}/{file}: {error}",
     "error_set_config": "Kesalahan mengatur konfigurasi {config}: {error}",
@@ -338,7 +340,14 @@
     "failed_to_start": "Gagal memulai lazy: {error}",
     "unhandled_rejection": "Unhandled Rejection: {reason}",
     "uncaught_exception": "Uncaught Exception: {error}",
-    "plugin_website": "Temukan dan unduh plugin di: {url}"
+    "plugin_website": "Temukan dan unduh plugin di: {url}",
+    "version_info": "Versi: {version}",
+    "new_version_available": "Versi baru tersedia: {latest}. Unduh di sini: {url}",
+    "version_check_failed": "Gagal memeriksa pembaruan: {error}",
+    "errors": {
+      "GITHUB_REPO_NOT_CONFIGURED": "Repositori GitHub belum dikonfigurasi di pengaturan situs.",
+      "GITHUB_FETCH_FAILED": "Gagal mengambil versi terbaru dari GitHub."
+    }
   },
   "wa": {
     "message_stub": "Stub pesan: {params}",

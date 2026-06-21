@@ -1,4 +1,4 @@
-import { defineMiddleware } from '@lazy-bot/core/types/plugin';
+import { defineMiddleware } from '@lazy/core/types/plugin';
 
 export default defineMiddleware({
   event: '{{event}}',
