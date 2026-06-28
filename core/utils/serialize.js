@@ -26,23 +26,27 @@ export class MessageContext {
         this.#raw = raw;
         Object.assign(this, data);
     }
-    async reply(text) {
-        return await this.#sock.sendMessage(this.chat, { text }, { quoted: this.#raw });
+    async reply(text, options = {}) {
+        const mentions = text?.match(/@(\d+)/g)?.map((v) => v.replace('@', '') + '@s.whatsapp.net') || [];
+        return await this.#sock.sendMessage(this.chat, { text, mentions: [...new Set([...mentions, ...(options.mentions || [])])], ...options }, { quoted: this.#raw });
     }
-    async sendImage(image, caption = '') {
-        return await this.#sock.sendMessage(this.chat, { image, caption }, { quoted: this.#raw });
+    async sendImage(image, caption = '', options = {}) {
+        const mentions = caption?.match(/@(\d+)/g)?.map((v) => v.replace('@', '') + '@s.whatsapp.net') || [];
+        return await this.#sock.sendMessage(this.chat, { image, caption, mentions: [...new Set([...mentions, ...(options.mentions || [])])], ...options }, { quoted: this.#raw });
     }
-    async sendVideo(video, caption = '') {
-        return await this.#sock.sendMessage(this.chat, { video, caption }, { quoted: this.#raw });
+    async sendVideo(video, caption = '', options = {}) {
+        const mentions = caption?.match(/@(\d+)/g)?.map((v) => v.replace('@', '') + '@s.whatsapp.net') || [];
+        return await this.#sock.sendMessage(this.chat, { video, caption, mentions: [...new Set([...mentions, ...(options.mentions || [])])], ...options }, { quoted: this.#raw });
     }
-    async sendAudio(audio, ptt = false) {
-        return await this.#sock.sendMessage(this.chat, { audio, ptt }, { quoted: this.#raw });
+    async sendAudio(audio, ptt = false, options = {}) {
+        return await this.#sock.sendMessage(this.chat, { audio, ptt, ...options }, { quoted: this.#raw });
     }
     async sendDocument(document, options = {}) {
-        return await this.#sock.sendMessage(this.chat, { document, ...options }, { quoted: this.#raw });
+        const mentions = options.caption?.match(/@(\d+)/g)?.map((v) => v.replace('@', '') + '@s.whatsapp.net') || [];
+        return await this.#sock.sendMessage(this.chat, { document, mentions: [...new Set([...mentions, ...(options.mentions || [])])], ...options }, { quoted: this.#raw });
     }
-    async sendSticker(sticker) {
-        return await this.#sock.sendMessage(this.chat, { sticker }, { quoted: this.#raw });
+    async sendSticker(sticker, options = {}) {
+        return await this.#sock.sendMessage(this.chat, { sticker, ...options }, { quoted: this.#raw });
     }
     async react(emoji) {
         return await this.#sock.sendMessage(this.chat, {

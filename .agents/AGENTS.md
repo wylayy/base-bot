@@ -508,7 +508,7 @@ Konfigurasi DB via .env:
 
 1. Format file: JavaScript ES Module (.js), gunakan `export default`
 2. Selalu gunakan defineCommand, defineEvent, defineMiddleware untuk type safety
-3. Nama command harus unik dalam plugin. Alias boleh konflik antar plugin
+3. Nama Command vs Alias: Properti `name` pada `defineCommand` adalah identifier unik internal (misal `group-kick`), BUKAN perintah yang diketik oleh user di WhatsApp. Kata kunci perintah yang sebenarnya dipakai oleh user (seperti `kick` atau `add`) didefinisikan di dalam array `aliases` (contoh: `aliases: ['kick', 'remove']`). Pastikan `name` selalu unik di dalam plugin.
 4. Jangan import TypeScript dari dalam plugin — gunakan import dari @lazy/core/*
 5. Error handling: bungkus operasi async dengan try/catch, gunakan logger.error()
 6. Config: simpan di configs/*.json, jangan hardcode nilai di dalam kode
@@ -516,6 +516,11 @@ Konfigurasi DB via .env:
 8. Media: gunakan msg.downloadMedia() untuk download, lalu Storage.saveTmp() jika perlu disimpan
 9. Penyimpanan Data: Secara default, gunakan `configs/*.json` (via `config.get()`/`config.set()`) untuk data sederhana. Hanya gunakan database (Knex) dan buat migrasi jika data berukuran besar atau kompleks.
 10. Priority middleware: nilai negatif = jalan lebih awal (cocok untuk rate limiter, auth guard)
+11. Import Library: Selalu gunakan static import di bagian atas file (jangan gunakan dynamic `import()` di dalam scope fungsi) untuk library eksternal agar sesuai standar ES Modules. Untuk Baileys, gunakan `import { ... } from 'baileys'` (bukan `@whiskeysockets/baileys`).
+12. Status Code Baileys: Perhatikan bahwa nilai balikan `status` pada response Baileys (misal dari `groupParticipantsUpdate`) bertipe string (misal: `'200'`, `'403'`). Selalu gunakan strict equality dengan string (`status === '200'`) alih-alih number agar tidak memicu error TypeScript.
+13. Formatting File Bahasa (`lang/*.json`):
+    - Jangan gunakan karakter penutup `└` atau newline ekstra di akhir pesan. Cukup gunakan header (contoh: `┌ *HEADER*\nPesan di sini.`).
+    - Jangan gunakan awalan ` › ` untuk pesan teks biasa (satu baris). Awalan ` › ` HANYA boleh digunakan untuk menampilkan baris daftar/list.
 
 ---
 

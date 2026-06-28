@@ -14,22 +14,22 @@ export declare class MessageContext {
     commands: any[];
     plugins: any;
     constructor(sock: any, raw: WAMessage, data: any);
-    reply(text: string): Promise<any>;
+    reply(text: string, options?: any): Promise<any>;
     sendImage(image: Buffer | {
         url: string;
-    }, caption?: string): Promise<any>;
+    }, caption?: string, options?: any): Promise<any>;
     sendVideo(video: Buffer | {
         url: string;
-    }, caption?: string): Promise<any>;
+    }, caption?: string, options?: any): Promise<any>;
     sendAudio(audio: Buffer | {
         url: string;
-    }, ptt?: boolean): Promise<any>;
+    }, ptt?: boolean, options?: any): Promise<any>;
     sendDocument(document: Buffer | {
         url: string;
     }, options?: any): Promise<any>;
     sendSticker(sticker: Buffer | {
         url: string;
-    }): Promise<any>;
+    }, options?: any): Promise<any>;
     react(emoji: string): Promise<any>;
     delete(): Promise<any>;
     downloadMedia(): Promise<Buffer<ArrayBufferLike>>;
